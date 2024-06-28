@@ -18,12 +18,16 @@ phases:
       - dotnet build ./NumberToWordsProject.sln
  
       - dotnet build ./src/NumberToWords.API/NumberToWords.API.csproj
+
+      - dotnet build ./test/TestNumberToWords/TestNumberToWords.csproj --framework net8.0
      
   post_build:
     commands:
       - echo Build completed on `date`
  
       - dotnet publish -c Release -r linux-x64 -o ./build_output ./src/NumberToWords.API/NumberToWords.API.csproj --self-contained false
+
+      - dotnet test -c Release ./test/TestNumberToWords/TestNumberToWords.csproj --logger trx --results-directory ./testresults
  
 artifacts:
   files:
