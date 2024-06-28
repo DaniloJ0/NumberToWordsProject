@@ -1,1 +1,8 @@
 # NumberToWordsProject
+
+This API returns the text of the pronunciation of a number.
+
+> [!Note]
+> Values from 0 to 999.999.999.999
+
+

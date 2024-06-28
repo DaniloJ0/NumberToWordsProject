@@ -1,20 +1,26 @@
-using Microsoft.AspNetCore.Mvc;
 using Humanizer;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace NumberToWordsAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class NumberToWordController : ControllerBase
     {
         
         [HttpGet("{number}")]
         public IActionResult Get(long number)
         { 
-            //long number = 21;
-            var numberInWords = number.ToWords(new System.Globalization.CultureInfo("es-ES"));
+            string numberInWords = number.ToWords(new System.Globalization.CultureInfo("es-ES"));
+            if (string.IsNullOrEmpty(numberInWords))
+            {
+                return NotFound();
+            }
+
             return Ok(new { number, numberInWords });
         }
+        
     }
 }
