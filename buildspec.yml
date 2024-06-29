@@ -1,17 +1,18 @@
 version: 0.2
 phases:
   install:
-    rutime-versions:
-      dotnet: 8.0
+    commands:
+      - curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0
   pre_build:
     commands:
       - echo Restore started on `date`
+      - dotnet restore ./NumberToWordsProject.sln
       - dotnet restore ./src/NumberToWords.API/NumberToWords.API.csproj
       - dotnet restore ./test/TestNumberToWords/TestNumberToWords.csproj
-     
   build:
     commands:
       - echo Build started on `date`
+      - dotnet build ./NumberToWordsProject.sln
       - dotnet build ./src/NumberToWords.API/NumberToWords.API.csproj
       - dotnet build ./test/TestNumberToWords/TestNumberToWords.csproj
   post_build:
