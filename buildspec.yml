@@ -12,9 +12,9 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - dotnet build ./NumberToWordsProject.sln
-      - dotnet build ./src/NumberToWords.API/NumberToWords.API.csproj
-      - dotnet build ./test/TestNumberToWords/TestNumberToWords.csproj
+      - dotnet build ./NumberToWordsProject.sln 
+      - dotnet build ./src/NumberToWords.API/NumberToWords.API.csproj --framework net8.0
+      - dotnet build ./test/TestNumberToWords/TestNumberToWords.csproj --framework net8.0
   post_build:
     commands:
       - echo Build completed on `date`
