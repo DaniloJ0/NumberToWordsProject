@@ -1,35 +1,24 @@
 version: 0.2
 phases:
   install:
-    commands:
-      - curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel STS
+    rutime-versions:
+      dotnet: 8.0
   pre_build:
     commands:
       - echo Restore started on `date`
- 
-      - dotnet restore ./NumberToWordsProject.sln
- 
       - dotnet restore ./src/NumberToWords.API/NumberToWords.API.csproj
       - dotnet restore ./test/TestNumberToWords/TestNumberToWords.csproj
      
   build:
     commands:
       - echo Build started on `date`
- 
-      - dotnet build ./NumberToWordsProject.sln
- 
       - dotnet build ./src/NumberToWords.API/NumberToWords.API.csproj
-
-      - dotnet build ./test/TestNumberToWords/TestNumberToWords.csproj --framework net8.0
-     
+      - dotnet build ./test/TestNumberToWords/TestNumberToWords.csproj
   post_build:
     commands:
       - echo Build completed on `date`
- 
       - dotnet publish -c Release -r linux-x64 -o ./build_output ./src/NumberToWords.API/NumberToWords.API.csproj --self-contained false
-
       - dotnet test -c Release ./test/TestNumberToWords/TestNumberToWords.csproj --logger trx --results-directory ./testresults
- 
 artifacts:
   files:
     - '**/*'
