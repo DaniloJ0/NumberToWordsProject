@@ -19,7 +19,7 @@ namespace NumberToWords.API.Controllers
         }
 
 
-        [HttpPost("Authenticate")]
+        [HttpPost]
         public IActionResult GetToken([FromBody] User user)
         {
             const string defaultUserName = "user";

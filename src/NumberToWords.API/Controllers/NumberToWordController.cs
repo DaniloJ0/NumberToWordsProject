@@ -10,21 +10,30 @@ namespace NumberToWordsAPI.Controllers
     [Authorize]
     public class NumberToWordController : ControllerBase
     {
-        
-        [HttpGet("{number}")]
-        public IActionResult Get(long number)
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("Welcome to NumberToWords API");
+        }
+
+        [HttpPost]
+        public IActionResult Call(NumberRequest numberRequest)
         { 
-            if (number < 0 || number > 999999999999)
+            if (numberRequest is null)
+                return BadRequest("Number is required");
+
+            if (numberRequest.Number < 0 || numberRequest.Number > 999999999999)
                 return BadRequest("Values must be from 0 to 999999999999");
 
-            string numberInWords = number.ToWords(new System.Globalization.CultureInfo("es-ES"));
+            string numberInWords = numberRequest.Number.ToWords(new System.Globalization.CultureInfo("es-ES"));
             
             if (string.IsNullOrEmpty(numberInWords))
                 return NotFound();
 
             var response = new NumberResponse
             {
-                Number = number,
+                Number = numberRequest.Number,
                 NumberInWords = numberInWords
             };
 
