@@ -10,6 +10,7 @@ phases:
       - dotnet restore ./NumberToWordsProject.sln
  
       - dotnet restore ./src/NumberToWords.API/NumberToWords.API.csproj
+      - dotnet restore ./test/TestNumberToWords/TestNumberToWords.csproj
      
   build:
     commands:
