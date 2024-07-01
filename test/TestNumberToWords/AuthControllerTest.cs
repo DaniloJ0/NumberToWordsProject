@@ -1,26 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using NumberToWords.API.Controllers;
 using NumberToWords.API.Models;
-using NumberToWordsAPI.Controllers;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TestNumberToWords
 {
     public class AuthControllerTest
     {
-        private IConfiguration _config;
         private AuthenticateController _authController;
 
         [SetUp]
         public void Setup()
         {
-            _config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddInMemoryCollection()
-                .Build();
+            var jwtSettings = new JwtSettings
+            {
+                SecretKey = "2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b"
+            };
 
-            _authController = new AuthenticateController(_config);
+            var options = Options.Create(jwtSettings);
+            _authController = new AuthenticateController(options);
             
 
         }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NumberToWords.API.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
 
+if (string.IsNullOrEmpty(jwtSecret))
+{
+    throw new InvalidOperationException("JWT_SECRET environment variable is not set");
+}
 
 builder.Services.AddAuthentication(config =>
 {
@@ -24,10 +30,16 @@ builder.Services.AddAuthentication(config =>
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8
-            .GetBytes(builder.Configuration["ApplicationSettings:JWT_Secret"])),
+            .GetBytes(jwtSecret)),
         ValidateIssuer = false,
         ValidateAudience = false
     };
+});
+
+
+builder.Services.Configure<JwtSettings>(options =>
+{
+    options.SecretKey = jwtSecret;
 });
 
 builder.Services.AddEndpointsApiExplorer();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NumberToWords.API.Models;
 using System.IdentityModel.Tokens.Jwt;
@@ -13,11 +14,10 @@ namespace NumberToWords.API.Controllers
     {
         private readonly string secretKey;
 
-        public AuthenticateController(IConfiguration config)
+        public AuthenticateController(IOptions<JwtSettings> jwtSettings)
         {
-            secretKey = config["ApplicationSettings:JWT_Secret"];
+            secretKey = jwtSettings.Value.SecretKey ?? throw new InvalidOperationException("JWT_SECRET is not configured");
         }
-
 
         [HttpPost]
         public IActionResult GetToken([FromBody] User user)
