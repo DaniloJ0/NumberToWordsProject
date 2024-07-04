@@ -8,17 +8,23 @@ phases:
       - echo Restore started on `date`
       - dotnet restore ./NumberToWordsProject.sln
       - dotnet restore ./src/NumberToWords.API/NumberToWords.API.csproj
+      - dotnet restore ./src/NumberToWords.Domain/NumberToWords.Domain.csproj
+      - dotnet restore ./src/NumberToWords.Infrastructure/NumberToWords.Infrastructure.csproj
       - dotnet restore ./test/TestNumberToWords/TestNumberToWords.csproj
   build:
     commands:
       - echo Build started on `date`
       - dotnet build ./NumberToWordsProject.sln 
       - dotnet build ./src/NumberToWords.API/NumberToWords.API.csproj --framework net8.0
+      - dotnet build ./src/NumberToWords.Domain/NumberToWords.Domain.csproj --framework net8.0
+      - dotnet build ./src/NumberToWords.Infrastructure/NumberToWords.Infrastructure.csproj --framework net8.0
       - dotnet build ./test/TestNumberToWords/TestNumberToWords.csproj --framework net8.0
   post_build:
     commands:
       - echo Build completed on `date`
       - dotnet publish -c Release -r linux-x64 -o ./build_output ./src/NumberToWords.API/NumberToWords.API.csproj --self-contained false
+      - dotnet publish -c Release -r linux-x64 -o ./build_output ./src/NumberToWords.Domain/NumberToWords.Domain.csproj --self-contained false
+      - dotnet publish -c Release -r linux-x64 -o ./build_output ./src/NumberToWords.Infrastructure/NumberToWords.Infrastructure.csproj --self-contained false
       - dotnet test -c Release ./test/TestNumberToWords/TestNumberToWords.csproj --logger trx --results-directory ./testresults
 artifacts:
   files:
