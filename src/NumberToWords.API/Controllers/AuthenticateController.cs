@@ -8,13 +8,10 @@ namespace NumberToWords.API.Controllers
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        //private readonly string secretKey;
         private readonly IJwtTokenService _jwtTokenService;
-
         public AuthenticateController(IJwtTokenService jwtTokenService)
         {
             _jwtTokenService = jwtTokenService;
-            //secretKey = jwtSettings.Value.SecretKey ?? throw new InvalidOperationException("JWT_SECRET is not configured");
         }
 
         [HttpPost]

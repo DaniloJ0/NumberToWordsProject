@@ -10,7 +10,6 @@ namespace NumberToWordsAPI.Controllers
     [Authorize]
     public class NumberToWordController : ControllerBase
     {
-
         [HttpGet]
         public IActionResult Get()
         {
