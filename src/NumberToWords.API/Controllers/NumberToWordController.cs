@@ -7,11 +7,12 @@ namespace NumberToWordsAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    //[Authorize]
     public class NumberToWordController : ControllerBase
     {
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get()
         {
             return Ok("Welcome to NumberToWords API");
@@ -39,6 +40,5 @@ namespace NumberToWordsAPI.Controllers
 
             return Ok(response);
         }
-        
     }
 }
