@@ -3,6 +3,6 @@
     public class NumberResponse
     {
         public long Number { get; set; }
-        public string NumberInWords { get; set; }
+        public string NumberInWords { get; set; } = string.Empty;
     }
 }
