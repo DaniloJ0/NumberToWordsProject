@@ -10,7 +10,7 @@ namespace NumberToWords.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddSingleton<IJwtTokenService, JwtTokenService>();
             services.AddTransient<INumberToWordsService, NumberToWordsService>();
 
             return services;

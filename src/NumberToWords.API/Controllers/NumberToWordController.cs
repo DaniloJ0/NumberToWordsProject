@@ -16,8 +16,8 @@ namespace NumberToWordsAPI.Controllers
             _numberToWordsService = numberToWordsService;
         }
 
-
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get()
         {
             return Ok("Welcome to NumberToWords API");
