@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NumberToWords.Domain.Models.Jwt;
+using NumberToWords.Domain.Models.Services;
 using NumberToWords.Infrastructure.Services;
 
 namespace NumberToWords.Infrastructure
@@ -10,6 +11,7 @@ namespace NumberToWords.Infrastructure
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<INumberToWordsService, NumberToWordsService>();
 
             return services;
         }
