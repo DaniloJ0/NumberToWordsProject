@@ -1,7 +1,7 @@
 using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NumberToWords.API.Models;
+using NumberToWords.Domain.Models.Number;
 
 namespace NumberToWordsAPI.Controllers
 {

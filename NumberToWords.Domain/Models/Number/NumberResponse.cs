@@ -1,4 +1,4 @@
-﻿namespace NumberToWords.API.Models
+﻿namespace NumberToWords.Domain.Models.Number
 {
     public class NumberResponse
     {

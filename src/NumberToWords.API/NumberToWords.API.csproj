@@ -15,4 +15,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\NumberToWords.Domain\NumberToWords.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

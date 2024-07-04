@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NumberToWords.API.Models;
+using NumberToWords.Domain.Models.Jwt;
+using NumberToWords.Domain.Models.User;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -20,7 +22,7 @@ namespace NumberToWords.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetToken([FromBody] User user)
+        public IActionResult GetToken([FromBody] UserRequest user)
         {
             const string defaultUserName = "user";
             const string defaulPassword = "123";
