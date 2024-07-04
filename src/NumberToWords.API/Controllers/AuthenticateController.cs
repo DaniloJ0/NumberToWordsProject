@@ -14,43 +14,26 @@ namespace NumberToWords.API.Controllers
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        private readonly string secretKey;
+        //private readonly string secretKey;
+        private readonly IJwtTokenService _jwtTokenService;
 
-        public AuthenticateController(IOptions<JwtSettings> jwtSettings)
+        public AuthenticateController(IJwtTokenService jwtTokenService)
         {
-            secretKey = jwtSettings.Value.SecretKey ?? throw new InvalidOperationException("JWT_SECRET is not configured");
+            _jwtTokenService = jwtTokenService;
+            //secretKey = jwtSettings.Value.SecretKey ?? throw new InvalidOperationException("JWT_SECRET is not configured");
         }
 
         [HttpPost]
         public IActionResult GetToken([FromBody] UserRequest user)
         {
-            const string defaultUserName = "user";
-            const string defaulPassword = "123";
-
-            if (user.UserName != defaultUserName || user.Password != defaulPassword)
+            
+            if (user.UserName == "user" && user.Password == "123") // Valida tus credenciales
             {
-                return Unauthorized("UserName or password does not match");
+                var token = _jwtTokenService.GenerateToken(user.UserName);
+                return Ok(new { Token = token });
             }
 
-            var keyBytes = Encoding.UTF8.GetBytes(secretKey);
-            var claims = new Claim[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.UserName)
-            };
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(5),
-                SigningCredentials = new SigningCredentials(
-                                     new SymmetricSecurityKey(keyBytes),
-                                     SecurityAlgorithms.HmacSha256Signature)};
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var jwtConfig = tokenHandler.CreateToken(tokenDescriptor);
-            string jwtToken = tokenHandler.WriteToken(jwtConfig);
-
-            return Ok(new { token = jwtToken });
+            return Unauthorized("Invalid credentials");
         }
 
     }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NumberToWords.Domain.Models.User;
 
-namespace ContactManagement.Infrastructure
+namespace NumberToWords.Infrastructure
 {
     public class ApplicationDbContext : DbContext
     {

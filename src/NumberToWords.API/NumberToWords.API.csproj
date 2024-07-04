@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\NumberToWords.Domain\NumberToWords.Domain.csproj" />
+    <ProjectReference Include="..\..\NumberToWords.Infrastructure\NumberToWords.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

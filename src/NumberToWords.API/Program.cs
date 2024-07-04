@@ -3,11 +3,13 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NumberToWords.Domain.Models.Jwt;
 using System.Text;
+using NumberToWords.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddControllers();
 
 var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");

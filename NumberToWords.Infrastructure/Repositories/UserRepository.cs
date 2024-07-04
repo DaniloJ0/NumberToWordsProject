@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NumberToWords.Domain.Models.User;
 
-namespace ContactManagement.Infrastructure.Repositories
+namespace NumberToWords.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {

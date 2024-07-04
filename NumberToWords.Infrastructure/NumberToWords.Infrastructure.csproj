@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NumberToWords.Domain\NumberToWords.Domain.csproj" />
-    <ProjectReference Include="..\src\NumberToWords.API\NumberToWords.API.csproj" />
   </ItemGroup>
 
 </Project>

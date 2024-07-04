@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using NumberToWords.API.Controllers;
 using NumberToWords.API.Models;
+using NumberToWords.Domain.Models.Number;
 using NumberToWordsAPI.Controllers;
 
 namespace TestNumberToWords
