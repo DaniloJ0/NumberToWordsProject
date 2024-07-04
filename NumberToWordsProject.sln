@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumberToWords.API", "src\Nu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestNumberToWords", "test\TestNumberToWords\TestNumberToWords.csproj", "{56D0B44A-754A-49C0-96E2-489A1275761F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberToWords.Infrastructure", "NumberToWords.Infrastructure\NumberToWords.Infrastructure.csproj", "{CB165057-7392-4159-B547-A6AA21789D23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberToWords.Infrastructure", "src\NumberToWords.Infrastructure\NumberToWords.Infrastructure.csproj", "{CB165057-7392-4159-B547-A6AA21789D23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberToWords.Domain", "NumberToWords.Domain\NumberToWords.Domain.csproj", "{7AAAEE98-8544-4ED8-989E-6F3891AF10FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberToWords.Domain", "src\NumberToWords.Domain\NumberToWords.Domain.csproj", "{7AAAEE98-8544-4ED8-989E-6F3891AF10FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

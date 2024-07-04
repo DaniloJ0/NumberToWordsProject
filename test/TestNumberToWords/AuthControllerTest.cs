@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using NumberToWords.API.Controllers;
 using NumberToWords.API.Models;
 using NumberToWords.Domain.Models.Jwt;
-using NumberToWords.Domain.Models.User;
 using NumberToWords.Infrastructure.Services;
 
 namespace TestNumberToWords
