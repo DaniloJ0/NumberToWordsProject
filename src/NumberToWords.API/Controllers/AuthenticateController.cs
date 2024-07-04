@@ -18,7 +18,7 @@ namespace NumberToWords.API.Controllers
         public IActionResult GetToken([FromBody] UserRequest user)
         {
             
-            if (user.UserName == "user" && user.Password == "123") // Valida tus credenciales
+            if (user.UserName == "user" && user.Password == "123") 
             {
                 var token = _jwtTokenService.GenerateToken(user.UserName);
                 return Ok(new { Token = token });
@@ -26,6 +26,5 @@ namespace NumberToWords.API.Controllers
 
             return Unauthorized("Invalid credentials");
         }
-        //number2worlds-env-new-features
     }
 }
