@@ -4,10 +4,16 @@ using Microsoft.OpenApi.Models;
 using NumberToWords.Domain.Models.Jwt;
 using System.Text;
 using NumberToWords.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using NumberToWords.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddControllers();
@@ -84,6 +90,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+app.UseMiddleware<NumberValidationMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
