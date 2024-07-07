@@ -1,4 +1,4 @@
-﻿namespace NumberToWords.API.Models
+﻿namespace NumberToWords.Domain.Models.Jwt
 {
     public class JwtSettings
     {

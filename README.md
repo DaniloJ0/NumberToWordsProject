@@ -17,5 +17,3 @@ This API returns the text of the pronunciation of a number.
 > ```
 
 
-
-

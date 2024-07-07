@@ -2,8 +2,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using NumberToWords.API.Models;
+using NumberToWords.Domain.Models.Jwt;
 using System.Text;
+using NumberToWords.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using NumberToWords.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,12 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 });
 
 // Add services to the container.
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
+
+builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddControllers();
 
 var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");

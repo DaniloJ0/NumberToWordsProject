@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using NumberToWords.API.Controllers;
-using NumberToWords.API.Models;
+using NumberToWords.Domain.Models.Number;
+using NumberToWords.Domain.Models.Services;
+using NumberToWords.Infrastructure.Services;
 using NumberToWordsAPI.Controllers;
 
 namespace TestNumberToWords
@@ -10,11 +10,13 @@ namespace TestNumberToWords
     public class NtoWControllerTest
     {
         private NumberToWordController _n2wController;
+        private INumberToWordsService _numberToWordsService;
 
         [SetUp]
         public void Setup()
         {
-            _n2wController = new NumberToWordController();
+            _numberToWordsService = new NumberToWordsService();
+            _n2wController = new NumberToWordController(_numberToWordsService);
 
         }
 

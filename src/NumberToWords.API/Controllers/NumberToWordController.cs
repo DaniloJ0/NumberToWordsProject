@@ -1,7 +1,7 @@
-using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NumberToWords.API.Models;
+using NumberToWords.Domain.Models.Number;
+using NumberToWords.Domain.Models.Services;
 
 namespace NumberToWordsAPI.Controllers
 {
@@ -10,6 +10,11 @@ namespace NumberToWordsAPI.Controllers
     [Authorize]
     public class NumberToWordController : ControllerBase
     {
+        private readonly INumberToWordsService _numberToWordsService;
+        public NumberToWordController(INumberToWordsService numberToWordsService)
+        {
+            _numberToWordsService = numberToWordsService;
+        }
 
         [HttpGet]
         [AllowAnonymous]
@@ -27,7 +32,7 @@ namespace NumberToWordsAPI.Controllers
             if (numberRequest.Number < 0 || numberRequest.Number > 999999999999)
                 return BadRequest("Values must be from 0 to 999999999999");
 
-            string numberInWords = numberRequest.Number.ToWords(new System.Globalization.CultureInfo("es-ES"));
+            string numberInWords = _numberToWordsService.NumberToWords(numberRequest.Number);
             
             if (string.IsNullOrEmpty(numberInWords))
                 return NotFound();
