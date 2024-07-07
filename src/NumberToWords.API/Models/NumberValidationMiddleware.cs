@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NumberToWords.Domain.Models.Number;
 
 namespace NumberToWords.API.Models
 {
